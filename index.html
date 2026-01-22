@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Josefina & Juanca</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background: #f7f5f2;
+  color: #2b2b2b;
+  text-align: center;
+}
+
+/* ===== SECCIONES ===== */
+section {
+  padding: 60px 20px;
+  max-width: 1000px;
+  margin: auto;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease;
+}
+
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== TIPOGRAFÍA ===== */
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  font-weight: 400;
+}
+
+h2 {
+  font-size: 14px;
+  letter-spacing: 4px;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+p {
+  font-size: 14px;
+  line-height: 1.9;
+  letter-spacing: 0.8px;
+  max-width: 600px;
+  margin: auto;
+}
+
+/* ===== BOTONES ===== */
+.button {
+  display: inline-block;
+  margin-top: 28px;
+  padding: 14px 38px;
+  border: 1px solid #2b2b2b;
+  text-decoration: none;
+  color: #2b2b2b;
+  font-size: 11px;
+  letter-spacing: 3px;
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: #2b2b2b;
+  color: white;
+  transform: translateY(-3px);
+}
+
+/* ===== HERO ===== */
+.hero {
+  background-image: linear-gradient(
+    rgba(255,255,255,0.15),
+    rgba(255,255,255,0.15)
+  ), url('portada.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  opacity: 1;
+  transform: none;
+}
+.hero {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero p {
+  letter-spacing: 3px;
+  font-size: 13px;
+}
+
+.divider {
+  width: 50px;
+  height: 1px;
+  background: white;
+  margin: 26px auto;
+}
+
+/* ===== DIVISOR ===== */
+.section-divider {
+  width: 60px;
+  height: 1px;
+  background: #c8c4bd;
+  margin: 60px auto;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.section-divider.visible {
+  opacity: 1;
+}
+
+/* ===== CONTADOR ===== */
+.countdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.time-box span {
+  font-size: 46px;
+  font-family: 'Playfair Display', serif;
+}
+
+.time-box small {
+  font-size: 10px;
+  letter-spacing: 2px;
+  display: block;
+  margin-top: 6px;
+}
+
+.colon {
+  font-size: 34px;
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 18px;
+}
+
+/* ===== EVENTOS ===== */
+.event-wrapper {
+  display: flex;
+  gap: 40px;
+  align-items: stretch;
+}
+
+.event-box {
+  flex: 1;
+  background: #eeeae4;
+  border-radius: 20px;
+  padding: 45px 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+  transition: transform 0.5s ease;
+}
+
+.event-box:hover {
+  transform: translateY(-6px);
+}
+
+.event-box h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  margin-bottom: 12px;
+}
+
+/* ===== MAPA ===== */
+iframe {
+  width: 100%;
+  height: 240px;
+  border: 0;
+  margin-top: 30px;
+  border-radius: 12px;
+}
+
+/* ===== MODAL REGALOS ===== */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #f7f5f2;
+  padding: 40px 30px;
+  border-radius: 22px;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  animation: modalFade 0.5s ease;
+  position: relative;
+}
+
+.modal-content h3 {
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 15px;
+}
+
+.close {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+@keyframes modalFade {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  .event-wrapper {
+    flex-direction: column;
+  }
+  .countdown {
+    gap: 6px;
+  }
+  .time-box span {
+    font-size: 38px;
+  }
+}
+
+/* ===== TIPS GRID ===== */
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.tip-box {
+  background: #eeeae4;
+  border-radius: 20px;
+  padding: 25px;
+  text-align: left;
+}
+
+.tip-box h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+.tip-box ul {
+  list-style: none;
+  padding: 0;
+  font-size: 13px;
+}
+
+.tip-box li {
+  margin-bottom: 10px;
+}
+
+.tip-box a {
+  font-size: 11px;
+  margin-left: 6px;
+}
+/* ===== FIX VISUAL MALLORCA TIPS ===== */
+.tips-content {
+  display: none;
+  margin-top: 30px;
+  background: #eeeae4;
+  border-radius: 24px;
+  padding: 40px 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+/* ===== NUEVO LAYOUT TIPS ===== */
+
+.tips-section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  margin: 50px 0 30px;
+}
+
+.tip-item {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  margin-bottom: 30px;
+  background: white;
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.05);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.tip-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.08);
+}
+
+.tip-item img {
+  width: 180px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.tip-info {
+  text-align: left;
+}
+
+.tip-info h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  margin: 0 0 8px;
+}
+
+.tip-info a {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #2b2b2b;
+  text-decoration: none;
+  border-bottom: 1px solid #2b2b2b;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .tip-item {
+    flex-direction: column;
+    text-align: center;
+  }
+  .tip-info {
+    text-align: center;
+  }
+  .tip-item img {
+    width: 100%;
+    height: 200px;
+  }
+}
+/* ===== CUENTAS BANCARIAS ===== */
+.bank-grid {
+  display: flex;
+  gap: 20px;
+  margin-top: 25px;
+}
+
+.bank-box {
+  flex: 1;
+  background: #eeeae4;
+  border-radius: 16px;
+  padding: 20px;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .bank-grid {
+    flex-direction: column;
+  }
+}
+/* ===== BOTON IDIOMA ===== */
+.lang-switch {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 3000;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+.lang-switch button {
+  background: white;
+  color: #2b2b2b;
+  border: 1px solid #2b2b2b;
+  padding: 6px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+}
+.lang-switch button:hover {
+  background: #2b2b2b;
+  color: white;
+}
+
+
+.lang-switch button:hover {
+  text-decoration: underline;
+}
+/* ===== TIPS BLOQUES ===== */
+
+.tips-block {
+  padding: 40px 30px;
+  border-radius: 26px;
+  margin: 40px 0;
+}
+
+/* fondo más claro */
+.tips-light {
+  background: #f7f5f2;
+}
+
+/* fondo arena */
+.tips-dark {
+  background: #e9e4dc;
+}
+
+.tips-section-title::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: #c8c4bd;
+  margin: 14px auto 0;
+}
+/* ===== ALOJAMIENTO DESPLEGABLE ===== */
+.accommodation-content {
+  display: none;
+  margin-top: 40px;
+  background: #eeeae4;
+  border-radius: 26px;
+  padding: 40px 30px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+.accommodation-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.accommodation-hotel {
+  font-size: 14px;
+  margin-bottom: 14px;
+}
+
+.accommodation-hotel a {
+  color: #2b2b2b;
+  text-decoration: underline;
+}
+
+.accommodation-note {
+  font-size: 13px;
+  line-height: 1.7;
+  margin-top: 20px;
+}
+/* ===== FOOTER ===== */
+.footer {
+  padding: 80px 20px 60px;
+  background: #f1eee9;
+  text-align: center;
+}
+
+.footer h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 400;
+  margin-bottom: 40px;
+}
+
+.footer-gallery {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-gallery img {
+  width: 200px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  transition: transform 0.4s ease;
+}
+
+.footer-gallery img:hover {
+  transform: translateY(-6px);
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .footer-gallery img {
+    width: 45%;
+    height: 140px;
+  }
+}
+/* ===== COPIAR DATOS BANCARIOS ===== */
+.bank-line {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 12px;
+}
+
+.bank-line .label {
+  font-size: 11px;
+  letter-spacing: 1px;
+  opacity: 0.6;
+}
+
+.bank-line .copy-text {
+  font-family: monospace;
+  font-size: 13px;
+  color: #2b2b2b;
+  text-decoration: none;
+  word-break: break-all;
+}
+
+/* ===== FIX DEFINITIVO NUMEROS AZULES ===== */
+.modal-content a,
+.modal-content a:visited,
+.modal-content a:hover,
+.modal-content a:active {
+  color: #2b2b2b !important;
+  text-decoration: none !important;
+  pointer-events: none;
+}
+
+.modal-content span,
+.modal-content strong,
+.modal-content p {
+  color: #2b2b2b !important;
+  text-decoration: none !important;
+}
+
+.modal-content * {
+  -webkit-text-decoration-skip: none;
+  text-decoration: none !important;
+}
+
+/* ===== FIX ANCHO MALLORCA TIPS ===== */
+.tips-block {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Ajustes mobile */
+@media (max-width: 768px) {
+  .tips-content {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .tips-block {
+    padding: 30px 20px;
+  }
+}
+
+/* Fondo general de toda la web */
+body {
+  background-image: url("fondo-pattern.png");
+  background-repeat: repeat;
+  background-size: 600px;
+  background-attachment: fixed;
+  position: relative;
+}
+
+/* Capa translúcida para que no sea abrumador */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.85);
+  z-index: -1;
+}
+
+
+
+</style>
+</head>
+
+<body>
+
+<div class="lang-switch">
+  <button onclick="setLanguage('es')">ES</button>
+  <span>|</span>
+  <button onclick="setLanguage('en')">EN</button>
+</div>
+
+<section class="hero">
+  <div>
+    <p data-i18n="we_are_getting_married">¡NOS CASAMOS!</p>
+    <h1>Josefina & Juanca</h1>
+    <div class="divider"></div>
+    <p>03 · 10 · 2026</p>
+    <p>MALLORCA, ESPAÑA</p>
+  </div>
+</section>
+
+<section>
+  <h2 data-i18n="countdown_title">Cuenta regresiva</h2>
+  <div id="countdown" class="countdown"></div>
+</section>
+
+<div class="section-divider"></div>
+
+<section>
+  <h2 data-i18n="where_when">Dónde y cuándo</h2>
+  <div class="event-wrapper">
+    <div class="event-box">
+      <h3 data-i18n="Ceremony">⛪ Ceremonia</h3>
+      <p>Iglesia Sant Marçal<br>Sa Cabaneta<br>17:00 hs</p>
+      <a class="button" href="https://maps.google.com/?q=Iglesia+Sant+Marçal+Palma+de+Mallorca" target="_blank">📍 Cómo llegar</a>
+    </div>
+
+    <div class="event-box">
+      <h3 data-i18n="Party">🎉 Fiesta</h3>
+      <p>Ses Cases de Sa Font Seca<br>Sa Font Seca<br>18:30 hs</p>
+      <a class="button" href="https://maps.google.com/?q=Ses+Cases+de+Sa+Font+Seca" target="_blank">📍 Cómo llegar</a>
+    </div>
+  </div>
+
+  <a class="button" href="https://docs.google.com/forms/d/1A6Xx9Xb8CgNpWJXM9j7s-tL5NCrENe5gpm-Up3gHzB8/edit" target="_blank"
+   data-i18n="rsvp">
+  CONFIRMAR ASISTENCIA
+</a>
+
+</section>
+
+<div class="section-divider"></div>
+
+<section>
+  <h2 data-i18n="transport_title">🚌 Transporte</h2>
+
+  <p data-i18n="transport_text">
+    Contaremos con Buses saliendo desde el<br><strong> Hotel Meliá Palma Marina</strong><br>y otro desde el <strong>Palacio de Los Congresos</strong><br>
+    Salida 16:30 hs · Regreso 03:00 hs<br> Si querés usar el bus, completá el siguiente link
+  </p>
+
+  <a
+    class="button"
+    href="https://docs.google.com/forms/d/1e6uNuU_-iu_9xVx8afQhezcUzguD_d0KmwULPK-9Iao/edit"
+    target="_blank"
+    data-i18n="transport_button"
+  >
+    QUIERO USAR EL BUS
+  </a>
+</section>
+
+
+
+<div class="section-divider"></div>
+
+<section>
+  <h2 data-i18n="dress_code_title">👗 Dress Code</h2>
+  <p data-i18n="dress_code_text">
+    <strong>Elegante</strong><br>Chicas!, vamos de largo<br>Chicos, Juanca se quitará la chaqueta/saco?
+  </p>
+</section>
+<div class="section-divider"></div>
+
+<section>
+  <h2 data-i18n="confirm_title">💌 Confirmá tu asistencia</h2>
+
+  <p data-i18n="confirm_text">
+    Es muy importante para nosotros que <strong>confirmes tu asistencia.</strong><br>
+    Por favor, completá el siguiente formulario.
+  </p>
+
+  <a
+    class="button"
+    href="https://docs.google.com/forms/d/1A6Xx9Xb8CgNpWJXM9j7s-tL5NCrENe5gpm-Up3gHzB8/edit"
+    target="_blank"
+    data-i18n="confirm_button"
+  >
+    CONFIRMAR ASISTENCIA
+  </a>
+</section>
+
+
+<div class="section-divider"></div>
+
+<section>
+  <h2 data-i18n="gifts_title">🎁 Regalos</h2>
+  <p data-i18n="gifts_text">
+  ¡Tu presencia es lo más importante para nosotros!.<br>
+  Y si también querés regalarnos algo para nuestra <strong>nueva etapa</strong>,<br> te dejamos nuestros datos abajo
+</p>
+
+  <a class="button" onclick="openModal()" data-i18n="gifts_button">
+  DATOS CUENTA EUR USD ARG
+</a>
+</section>
+
+<div class="section-divider"></div>
+
+<section>
+  <h2 data-i18n="accommodation_title">🏨 Alojamiento</h2>
+
+  <p data-i18n="accommodation_text">
+    Claro que podés alojarte donde quieras! Pero te dejamos opciones de algunos <strong>hoteles de Palma donde conseguimos descuentos</strong><br> Uno de estos hoteles será el punto de partida de buses<br>Si te interesa una habitación te dejamos toda la info acá
+  </p>
+
+ <a
+  class="button"
+  onclick="toggleAccommodation()"
+  data-i18n="accommodation_button"
+>
+  QUIERO ALOJARME
+</a>
+<div id="accommodation-info" class="accommodation-content">
+
+  <h3 class="accommodation-subtitle" data-i18n="melia_title">
+    Cadena de hoteles Meliá en Palma <br>(tiene cancelación gratuita y cuanto antes reserves el descuento es mayor)
+  </h3>
+
+  <p class="accommodation-hotel">
+    <a href="https://maps.app.goo.gl/abZSasvzNCkiQb3v6">
+      Hotel Meliá Palma Marina
+    </a><br>
+    <small data-i18n="melia_bus">
+      🚍 De aquí saldrá uno de nuestros buses hacia la boda
+    </small>
+  </p>
+
+  <p class="accommodation-hotel">
+    <a href="https://maps.app.goo.gl/MdfGxCjUeXPkQfkq8" target="_blank">
+      Hotel Innside by Meliá Palma Bosque
+    </a>
+  </p>
+
+  <p class="accommodation-hotel">
+    <a href="https://maps.app.goo.gl/xnYLcxDwyC8TGYCZ6" target="_blank">
+      Hotel Palma Bellver by Meliá
+    </a>
+  </p>
+
+  <p class="accommodation-note" data-i18n="melia_note">
+    Estos 3 hoteles se encuentran muy cerquita el uno del otro.<br>
+    Para reservar habitación con nuestro descuento accedé a la siguiente página:
+  </p>
+
+  <a
+    class="button"
+    href="https://events.melia.com/es/events/palma-port/BODA-JOSEFINA-JUANCA"
+    target="_blank"
+    data-i18n="melia_button"
+  >
+    WEB MELIÁ
+  </a>
+
+  <hr style="margin:40px 0; opacity:0.3;">
+
+  <h3 class="accommodation-subtitle" data-i18n="nou_title">
+    Hotel Nou Baleares <br>(tiene cancelación gratuita)
+  </h3>
+
+  <p class="accommodation-hotel">
+    <a href="https://www.noubaleares.com" target="_blank" data-i18n="nou_link">
+      Acceso directo a la web del hotel
+    </a>
+  </p>
+
+  <p class="accommodation-note" data-i18n="nou_note">
+    Para reservar habitación con nuestro descuento ingresá el código promocional:
+  </p>
+
+  <strong>JOSEYJUANCA</strong>
+
+</div>
+
+
+</section>
+
+
+<div class="section-divider"></div>
+
+<section>
+  <h2 data-i18n="tips_title">🌊 Mallorca Tips</h2>
+
+  <p data-i18n="tips_subtitle">
+    Si te quedas unos días mas por la Isla, hay lugares que <strong>no te podes perder.</strong><br> Te dejamos nuestros Mallorca tips
+  </p>
+
+  <a
+    class="button"
+    onclick="toggleTips()"
+    data-i18n="tips_button"
+  >
+    MOSTRAR TIPS
+  </a>
+
+
+  <div id="tips" class="tips-content">
+
+  <div class="tips-block tips-light">
+  <h3 class="tips-section-title" data-i18n="tips_towns">
+   Nuestra selección de Pueblitos Mallorquines 
+</h3>
+
+
+  <div class="tip-item">
+    <img src="soller.jpg">
+    <div class="tip-info">
+      <h4>Sóller</h4>
+      <a href="https://www.google.com/maps/place/07100+S%C3%B3ller,+Illes+Balears,+Espa%C3%B1a/@39.7671787,2.7148753,15z/data=!3m1!4b1!4m6!3m5!1s0x1297e8bf0f60ed33:0xb0011fe8275e422e!8m2!3d39.7670693!4d2.7157866!16zL20vMDI3ZF9q?entry=ttu&g_ep=EgoyMDI2MDExMy4wIKXMDSoASAFQAw%3D%3D" target="_blank"data-i18n="view_map">Ver en el mapa</a>
+    </div>
+  </div>
+
+  <div class="tip-item">
+    <img src="valldemossa.jpg">
+    <div class="tip-info">
+      <h4>Valldemossa</h4>
+      <a href="https://www.google.com/maps/place/07170+Valldemossa,+Illes+Balears,+Espa%C3%B1a/@39.7089222,2.6165184,16z/data=!4m6!3m5!1s0x1297ee03ba8ac6ff:0x924852e78b96123e!8m2!3d39.7114523!4d2.6225698!16zL20vMDFyNjNs?entry=ttu&g_ep=EgoyMDI2MDExMy4wIKXMDSoASAFQAw%3D%3D" target="_blank"data-i18n="view_map">Ver en el mapa</a>
+    </div>
+  </div>
+<div class="tip-item">
+  <img src="deia.jpg">
+  <div class="tip-info">
+    <h4 data-i18n="tip_deia">Deiá (el favorito de la novia)</h4>
+    <a href="https://www.google.com/maps/place/07179+Dei%C3%A0,+Illes+Balears,+Espa%C3%B1a/@39.7488103,2.6463368,15z/data=!3m1!4b1!4m6!3m5!1s0x1297efb31c0c5473:0xf97fd9b36dd4d4e2!8m2!3d39.7479394!4d2.6483743!16zL20vMDFzanZj?entry=ttu&g_ep=EgoyMDI2MDExMy4wIKXMDSoASAFQAw%3D%3D" target="_blank" data-i18n="view_map">
+      Ver en el mapa
+    </a>
+  </div>
+</div>
+
+<div class="tip-item">
+  <img src="santanyi.jpg">
+  <div class="tip-info">
+    <h4 data-i18n="tip_santanyi">Santanyí</h4>
+    <a href="https://www.google.com/maps/place/07650+Santany%C3%AD,+Illes+Balears,+Espa%C3%B1a/@39.3552123,3.1298291,15z/data=!3m1!4b1!4m6!3m5!1s0x129654848d3dbe79:0x57377cfd352b8d8e!8m2!3d39.3549119!4d3.1277273!16s%2Fg%2F11cp1hzkh0?entry=ttu&g_ep=EgoyMDI2MDExMy4wIKXMDSoASAFQAw%3D%3D" target="_blank" data-i18n="view_map">
+      Ver en el mapa
+    </a>
+  </div>
+</div>
+ </div>
+
+  <div class="tips-block tips-light">
+  <h3 class="tips-section-title" data-i18n="tips_beaches">
+   Playas QUE FLIPAS (porfi ser discretos, los Mallorquines cuidamos mucho nuestras playas del turismo)
+</h3>
+
+
+  <div class="tip-item">
+    <img src="na-clara.jpg">
+    <div class="tip-info">
+      <h4>Na Clara</h4>
+      <a href="https://www.google.com/maps/place/Mirador+de+Na+Clara/@39.757539,3.3244197,17z/data=!4m15!1m8!3m7!1s0x12963bb3dbc0ba55:0x29a7072fbd71c42a!2sMirador+de+Na+Clara!8m2!3d39.757539!4d3.3244197!10e5!16s%2Fg%2F11k5wq4x9p!3m5!1s0x12963bb3dbc0ba55:0x29a7072fbd71c42a!8m2!3d39.757539!4d3.3244197!16s%2Fg%2F11k5wq4x9p?entry=ttu&g_ep=EgoyMDI2MDExMy4wIKXMDSoASAFQAw%3D%3D" target="_blank"data-i18n="view_map">Ver en el mapa</a>
+    </div>
+  </div>
+
+  <div class="tip-item">
+    <img src="cala-tuent.jpg">
+    <div class="tip-info">
+      <h4>Cala Tuent</h4>
+      <a href="https://maps.app.goo.gl/KfSNeG9gaPFZPyuz6" target="_blank"data-i18n="view_map">Ver en el mapa</a>
+    </div>
+  </div>
+<div class="tip-item">
+  <img src="es-cargol.jpg">
+  <div class="tip-info">
+    <h4 data-i18n="tip_es_cargol">Es Cargol</h4>
+    <a href="https://www.google.com/maps/place/El+Caragol/@39.2774431,3.042133,781m/data=!3m2!1e3!4b1!4m6!3m5!1s0x1297009f662c2683:0x9df5fef914d8967f!8m2!3d39.2785572!4d3.04338!16s%2Fg%2F122qy94m?entry=ttu&g_ep=EgoyMDI2MDExMy4wIKXMDSoASAFQAw%3D%3D" target="_blank" data-i18n="view_map">
+      Ver en el mapa
+    </a>
+  </div>
+</div>
+
+<div class="tip-item">
+  <img src="cala-marmols.jpg">
+  <div class="tip-info">
+    <h4 data-i18n="tip_cala_marmols">Cala Màrmols</h4>
+    <a href="https://www.google.com/maps/place/Cala+Marmols/@39.2887531,3.0821123,14z/data=!4m6!3m5!1s0x1297aaafb7171d85:0x4c87fc0e61bbe107!8m2!3d39.2886207!4d3.0896654!16s%2Fg%2F11cn6c0s8s?entry=ttu&g_ep=EgoyMDI2MDExMy4wIKXMDSoASAFQAw%3D%3D" target="_blank" data-i18n="view_map">
+      Ver en el mapa
+    </a>
+  </div>
+</div>
+
+<div class="tip-item">
+  <img src="cala-agulla.jpg">
+  <div class="tip-info">
+    <h4 data-i18n="tip_cala_agulla">Cala Agulla</h4>
+    <a href="https://www.google.com/maps/place/07590+Cala+Agulla,+Illes+Balears,+Espa%C3%B1a/@39.7170523,3.4579408,15z/data=!3m1!4b1!4m6!3m5!1s0x12961655e01fdf7b:0xc287a1d0ff935b2e!8m2!3d39.7188355!4d3.4587575!16s%2Fg%2F12q4r7gdg?entry=ttu&g_ep=EgoyMDI2MDExMy4wIKXMDSoASAFQAw%3D%3D" target="_blank" data-i18n="view_map">
+      Ver en el mapa
+    </a>
+  </div>
+ </div>
+</div>
+
+
+  <div class="tips-block tips-light">
+  <h3 class="tips-section-title" data-i18n="tips_restaurants">
+  Restaurantes, NO HAY ASADO pero son para rechuparse los dedos 
+</h3>
+
+
+  <div class="tip-item">
+    <img src="ensaimada.jpg">
+    <div class="tip-info">
+      <h4 data-i18n="ensaimada_title">
+  Ensaimada obligatoria ⭐
+</h4>
+
+      <a href="https://maps.app.goo.gl/CWQoaokpfFhozJKq5" target="_blank"data-i18n="view_map">Ver en el mapa</a>
+    </div>
+  </div>
+<div class="tip-item">
+  <img src="vergeret.jpg">
+  <div class="tip-info">
+    <h4 data-i18n="tip_vergeret">Restaurant Es Vergeret (reservar con tiempo)</h4>
+    <a href="https://www.google.com/maps/place/Restaurante+Es+Vergeret+(Cerrado+por+vacaciones)/@39.8394405,2.7737298,17z/data=!3m1!4b1!4m9!3m8!1s0x1297ddc225ab0403:0xb62827d0c19049a8!5m2!4m1!1i2!8m2!3d39.8394405!4d2.7737298!16s%2Fg%2F1wjwxnj5?entry=ttu&g_ep=EgoyMDI2MDExMy4wIKXMDSoASAFQAw%3D%3D" target="_blank" data-i18n="view_map">
+      Ver en el mapa
+    </a>
+  </div>
+</div>
+
+<div class="tip-item">
+  <img src="o96.jpg">
+  <div class="tip-info">
+    <h4 data-i18n="tip_o96">Restaurant O96 (lejos de Palma)</h4>
+    <a href="https://www.google.com/maps/place/O96/@39.857544,3.1025567,17z/data=!3m1!4b1!4m6!3m5!1s0x12962d048ac3114d:0x4e254acecf166e6e!8m2!3d39.857544!4d3.1025567!16s%2Fg%2F11kjy7zgry?entry=ttu&g_ep=EgoyMDI2MDExMy4wIKXMDSoASAFQAw%3D%3D" target="_blank" data-i18n="view_map">
+      Ver en el mapa
+    </a>
+  </div>
+</div>
+
+<div class="tip-item">
+  <img src="barahona.jpg">
+  <div class="tip-info">
+    <h4 data-i18n="tip_barahona">Bodega Barahona (el favorito del novio)</h4>
+    <a href="https://www.google.com/maps/place/Bodega+Barahona+-+Casa+Manolo/@39.3390341,3.0550161,17z/data=!3m1!4b1!4m6!3m5!1s0x1297aba0e28dd3a7:0x4add7f965de28a86!8m2!3d39.3390341!4d3.0550161!16s%2Fg%2F1ttxdyrd?entry=ttu&g_ep=EgoyMDI2MDExMy4wIKXMDSoASAFQAw%3D%3D" target="_blank" data-i18n="view_map">
+      Ver en el mapa
+    </a>
+  </div>
+</div>
+
+<div class="tip-item">
+  <img src="montision.jpg">
+  <div class="tip-info">
+    <h4 data-i18n="tip_montision">Restaurant Monti-Sion</h4>
+    <a href="https://www.google.com/maps/place/Restaurant+Montision/@39.4962794,3.0165551,17z/data=!3m1!4b1!4m6!3m5!1s0x1297b1b8cd60c20d:0x508146fc2ecef6af!8m2!3d39.4962794!4d3.0165551!16s%2Fg%2F11s5bz7g3f?entry=ttu&g_ep=EgoyMDI2MDExMy4wIKXMDSoASAFQAw%3D%3D" target="_blank" data-i18n="view_map">
+      Ver en el mapa
+    </a>
+  </div>
+</div>
+</div>
+
+</div>
+
+</section>
+
+
+<section>
+  <h2>📍 Ubicación</h2>
+  <iframe src="https://www.google.com/maps?q=Palma+de+Mallorca&output=embed"></iframe>
+</section>
+
+<div id="modal" class="modal" onclick="closeModal()">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <span class="close" onclick="closeModal()">×</span>
+
+    <h3 data-i18n="bank_title">Datos bancarios</h3>
+
+    <div class="bank-grid">
+
+  <div class="bank-box">
+    <strong data-i18n="account_1">CUENTA EUR🇪🇸 / USD🇺🇸</strong>
+
+    <div class="bank-line">
+      <span class="label" data-i18n="bank_label">Banco</span>
+      <span class="copy-text">REVOLUT</span>
+    </div>
+
+    <div class="bank-line">
+      <span class="label" data-i18n="holder_label">Titular</span>
+      <span class="copy-text">Juan Carlos Serrano Pallicer</span>
+    </div>
+
+    <div class="bank-line">
+      <span class="label">IBAN</span>
+      <span class="copy-text">ES28 1583 0001 1890 1780 1677</span>
+    </div>
+
+    <div class="bank-line">
+      <span class="label">SWIFT</span>
+      <span class="copy-text">REVOESM2</span>
+    </div>
+  </div>
+
+  <div class="bank-box">
+    <strong data-i18n="account_2">CUENTA ARG 🇦🇷</strong>
+
+    <div class="bank-line">
+      <span class="label">Banco</span>
+      <span class="copy-text">BRUBANK</span>
+    </div>
+
+    <div class="bank-line">
+      <span class="label">Titular</span>
+      <span class="copy-text">Maria Josefina Avila</span>
+    </div>
+
+    <div class="bank-line">
+      <span class="label">CBU</span>
+      <span class="copy-text">1430 0017 1304 6815 0000 11</span>
+    </div>
+
+    <div class="bank-line">
+      <span class="label">Alias</span>
+      <span class="copy-text">JosefinayJuanca</span>
+    </div>
+  </div>
+
+</div>
+
+    <p style="margin-top:20px;" data-i18n="bank_thanks">
+      💛 Gracias por acompañarnos
+    </p>
+
+  </div>
+</div>
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  
+  let currentLang = "es";
+
+  
+  const targetDate = new Date("2026-10-03T17:00:00").getTime();
+  const countdown = document.getElementById("countdown");
+
+  setInterval(() => {
+    if (!countdown) return;
+
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const h = Math.floor((distance / (1000 * 60 * 60)) % 24);
+    const m = Math.floor((distance / (1000 * 60)) % 60);
+    const s = Math.floor((distance / 1000) % 60);
+
+   countdown.innerHTML = `
+  <div class="time-box"><span>${d}</span><small>${translations[currentLang].days}</small></div>
+  <div class="colon">:</div>
+  <div class="time-box"><span>${h}</span><small>${translations[currentLang].hours}</small></div>
+  <div class="colon">:</div>
+  <div class="time-box"><span>${m}</span><small>${translations[currentLang].minutes}</small></div>
+  <div class="colon">:</div>
+  <div class="time-box"><span>${s}</span><small>${translations[currentLang].seconds}</small></div>
+`;
+
+  }, 1000);
+
+  function openModal() {
+    document.getElementById("modal").style.display = "flex";
+  }
+
+  function closeModal() {
+    document.getElementById("modal").style.display = "none";
+  }
+
+  window.openModal = openModal;
+  window.closeModal = closeModal;
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll("section, .section-divider").forEach(el => {
+    observer.observe(el);
+  });
+
+  window.toggleTips = function () {
+    const tips = document.getElementById("tips");
+    if (!tips) return;
+    tips.style.display = tips.style.display === "block" ? "none" : "block";
+  };
+window.toggleAccommodation = function () {
+  const acc = document.getElementById("accommodation-info");
+  if (!acc) return;
+  acc.style.display = acc.style.display === "block" ? "none" : "block";
+};
+
+
+  const translations = {
+    es: {
+      we_are_getting_married: "¡NOS CASAMOS!",
+      countdown_title: "Cuenta regresiva",
+      where_when: "Dónde y cuándo",
+      Ceremony: "⛪ Ceremonia",
+      Party: "🎉 Fiesta",
+      rsvp: "CONFIRMAR ASISTENCIA",
+      gifts_text: "¡Tu presencia es lo más importante para nosotros!.<br>Y si también querés regalarnos algo para <strong>nuestra nueva etapa</strong><br> te dejamos nuestros datos abajo",
+      days: "DÍAS",
+      hours: "HORAS",
+      minutes: "MINUTOS",
+      seconds: "SEGUNDOS",
+      transport_title: "🚌 Transporte",
+      transport_text: "Contaremos con Buses saliendo desde el<br><strong> Hotel Meliá Palma Marina</strong><br>y otro desde el <strong>Palacio de Los Congresos</strong><br>Salida 16:30 hs · Regreso 03:00 hs<br> Si querés usar el bus, completá el siguiente link",
+      transport_button: "QUIERO USAR EL BUS",
+      dress_code_title: "👗 Dress Code",
+      dress_code_text: "<strong>Elegante</strong><br>Chicas!, vamos de largo<br>Chicos! Juanca se sacará la chaqueta/saco?",
+      gifts_title: "🎁 Regalos",
+      gifts_button: "DATOS CUENTA EUR USD ARG",
+      bank_title: "Datos bancarios",
+      bank_thanks: "💛 Gracias por acompañarnos",
+      account_1: "CUENTA EUR🇪🇸/USD🇺🇸",
+      account_2: "CUENTA ARG🇦🇷",
+      bank_label: "Banco",
+      holder_label: "Titular",
+      accommodation_title: "🏨 Alojamiento",
+      accommodation_text: "Claro que podés alojarte donde quieras! Pero te dejamos opciones de algunos <strong>hoteles de Palma donde conseguimos descuentos</strong><br> Uno de estos hoteles será el punto de partida de buses<br>Si te interesa una habitación completa el formulario en este link",
+      accommodation_button: "QUIERO ALOJARME",
+      tips_title: "🌊 Mallorca Tips",
+      tips_subtitle: "Si te quedas unos días mas por la Isla, hay lugares que <strong>no te podes perder.</strong><br> Te dejamos nuestros Mallorca tips",
+      tips_button: "MOSTRAR TIPS",
+      tips_towns: "Nuestra selección de Pueblitos Mallorquines",
+      tips_beaches: "Playas QUE FLIPAS (porfi ser discretos, los Mallorquines cuidamos mucho nuestras playas del turismo)",
+      tips_restaurants: "Restaurantes, NO HAY ASADO pero son para rechuparse los dedos",
+      view_map: "Ver en el mapa",
+      ensaimada_title: "Ensaimada obligatoria ⭐",
+      tip_deia: "Deiá (el favorito de la novia)",
+      tip_santanyi: "Santanyí",
+      tip_es_cargol: "Es Cargol",
+      tip_cala_marmols: "Cala Màrmols",
+      tip_cala_agulla: "Cala Agulla",
+      tip_vergeret: "Restaurant Es Vergeret (reservar con tiempo)",
+      tip_o96: "Restaurant O96 (lejos de Palma)",
+      tip_barahona: "Bodega Barahona (el favorito del novio)",
+      tip_montision: "Restaurant Monti-Sion",
+      melia_title: "Cadena de hoteles Meliá en Palma <br>(tiene cancelación gratuita y cuanto antes reserves mayor es el descuento)",
+      melia_bus: "🚍 De aquí saldrá nuestro bus hacia la boda",
+      melia_note: "Estos 3 hoteles se encuentran muy cerquita el uno del otro.<br>Para reservar habitación con nuestro descuento accedé a la siguiente página:",
+      melia_button: "WEB MELIÁ",
+      nou_title: "Hotel Nou Baleares <br>(tiene cancelación gratuita)",
+      nou_link: "Acceso directo a la web del hotel",
+      nou_note: "Para reservar habitación con nuestro descuento ingresá el código promocional:",
+      confirm_title: "💌 Confirmá tu asistencia",
+      confirm_text: "Es muy importante para nosotros que <strong>confirmes tu asistencia.</strong><br>Por favor, completá el siguiente formulario.",
+      confirm_button: "CONFIRMAR ASISTENCIA",
+      footer_title: "¡Te esperamos en nuestra isla preferida!",
+
+
+
+
+
+
+
+
+    },
+    en: {
+      we_are_getting_married: "WE'RE GETTING MARRIED!",
+      countdown_title: "Countdown",
+      where_when: "Where & When",
+      Ceremony: "⛪Ceremony",
+      Party: "🎉Party",
+      rsvp: "RSVP",
+      gifts_text: "Your presence is the most important thing for us!<br>And if you'd also like to give us a gift for this <strong>new chapter,</strong><br> we leave you our information below",
+      days: "DAYS",
+      hours: "HOURS",
+      minutes: "MINUTES",
+      seconds: "SECONDS",
+      transport_title: "🚌 Shuttle",
+      transport_text: "We will have buses departing from the <br><strong>Meliá Palma Marina Hotel</strong><br>and a second bus from <strong>El Palacio de Los Congresos</strong><br> Departure 4:30 PM · Return 3:00 AM<br>If you wish to use the bus, please complete the following link",
+      transport_button: "I WANT TO USE THE BUS",
+      dress_code_title: "👗 Dress Code",
+      dress_code_text: "<strong>Elegant</strong><br>Girls, lets wear long dresses!<br>Guys! Will Juanca take off his jacket at any point?",
+      gifts_title: "🎁 Gifts",
+      gifts_button: "VIEW DETAILS EUR USD ARG",
+      bank_title: "Bank Details",
+      bank_thanks: "💛 Thank you for celebrating with us",
+      account_1: "ACCOUNT EUR🇪🇸/USD🇺🇸",
+      account_2: "ACCOUNT ARG 🇦🇷",
+      bank_label: "Bank",
+      holder_label: "Account holder",
+      accommodation_title: "🏨 Accommodation",
+      accommodation_text: "Of course you can stay wherever you like! But we've included some <strong>hotel options in Palma where we got our guests some discounts</strong><br> One of this hotels will be the departure point for buses<br> If you are interested in a room, click the following button",
+      accommodation_button: "BOOK ACCOMMODATION",
+      tips_title: "🌊 Mallorca Tips",
+      tips_subtitle: "If you plan on staying a few more days in the island, here are some <strong>places you can't miss</strong>",
+      tips_button: "SHOW TIPS",
+      tips_towns: "Our selection of Mallorca´s best villages",
+      tips_beaches: "Amazing beaches (please be discreet, we Mallorcans take great care of our beaches from tourism)",
+      tips_restaurants: "Restaurants THERE IS NO ASADO, but they are finger-licking good",
+      view_map: "View on map",
+      ensaimada_title: "Ensaimada · Best in town ⭐",
+      tip_deia: "Deiá (the bride’s favorite)",
+      tip_santanyi: "Santanyí",
+      tip_es_cargol: "Es Cargol",
+      tip_cala_marmols: "Cala Màrmols",
+      tip_cala_agulla: "Cala Agulla",
+      tip_vergeret: "Restaurant Es Vergeret (book in advance)",
+      tip_o96: "Restaurant O96 (far from Palma)",
+      tip_barahona: "Bodega Barahona (the groom’s favorite)",
+      tip_montision: "Restaurant Monti-Sion",
+      melia_title: "Meliá hotel chain in Palma<br> (free cancelation, the sooner you book the bigger discount)",
+      melia_bus: "🚍 This hotel will be the departure point for our wedding bus",
+      melia_note: "These three hotels are located very close to each other.<br>To book a room with our discount, please visit the following page:",
+      melia_button: "MELIÁ WEBSITE",
+      nou_title: "Hotel Nou Baleares<br> (free cancelation)",
+      nou_link: "Direct access to the hotel website",
+      nou_note: "To book a room with our discount, please enter the following promotional code:",
+      confirm_title: "💌 RSVP",
+      confirm_text: "It is very important for us that you <strong>confirm your attendance.</strong><br>Please complete the following form.",
+      confirm_button: "CONFIRM ATTENDANCE",
+      footer_title: "We can’t wait to welcome you to our favorite island!",
+
+
+
+
+
+
+
+
+
+    }
+  };
+
+  window.setLanguage = function (lang) {
+    currentLang = lang;
+
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const key = el.getAttribute("data-i18n");
+      if (translations[lang][key]) {
+        el.innerHTML = translations[lang][key];
+      }
+    });
+  };
+
+
+});
+</script>
+<footer class="footer">
+  <h3 data-i18n="footer_title">
+    ¡Te esperamos en nuestra isla preferida!
+  </h3>
+
+  <div class="footer-gallery">
+    <img src="foto1.jpg" alt="Josefina y Juanca">
+    <img src="foto2.jpg" alt="Josefina y Juanca">
+    <img src="foto3.jpg" alt="Josefina y Juanca">
+    <img src="foto4.jpg" alt="Josefina y Juanca">
+  </div>
+</footer>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
